@@ -128,6 +128,7 @@
       width: 100%;
       height: 25vh;
       border: 1px solid;
+      box-sizing: border-box;
     }
     .half {
       width: 100%;
@@ -643,13 +644,13 @@ Your dear old papa died when you were thirteen, stumbling drunk into a ditch and
     <a id="example">See example</a>
   </header>
   <main>
-    <textarea id="md_source" rows="10"></textarea>
+    <textarea id="md_source" rows="10" placeholder="Markdown source"></textarea>
     <div class="block-group">
       <div class="block half">
-        <textarea id="js_source"></textarea>
+        <textarea id="js_source" placeholder="JS code"></textarea>
       </div>
       <div class="block half">
-        <textarea id="css_source"></textarea>
+        <textarea id="css_source" placeholder="CSS code"></textarea>
       </div>
     </div>
     <hr/>
