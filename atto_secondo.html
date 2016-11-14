@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Atto Secondo</title>
+  <style id="lightweight-stylesheet">
+    html {
+      font-size: 1.2em;
+    }
+    body {
+      margin: 1em auto;
+      max-width: 32em;
+      padding: 0 .62em;
+      line-height: 1.6em;
+      font-family: Baskerville, Garamond, Palatino, "Palatino Linotype", "Hoefler Text", "Times New Roman", Times, serif;
+      background-color: white;
+      color: #333;
+      display: flex;
+      min-height: calc(100vh - 2em);
+      flex-direction: column;
+    }
+    main {
+      flex: 1;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      line-height: 1.2em;
+    }
+    dt {
+      font-weight: bold;
+    }
+    footer, .navbar, .center {
+      text-align: center;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.441em;
+    }
+    h2 {
+      font-size: 1.953em;
+    }
+    h3 {
+      font-size: 1.563em;
+    }
+    h4 {
+      font-size: 1.25em;
+    }
+    @media (min-width: 768px) {
+      h1 {
+        font-size: 3.157em;
+      }
+      h2 {
+        font-size: 2.369em;
+      }
+      h3 {
+        font-size: 1.777em;
+      }
+      h4 {
+        font-size: 1.333em;
+      }
+    }
+    small, .font_small {
+      font-size: 0.707em;
+    }
+    @media print {
+      body {
+        max-width: none;
+      }
+    }
+    a {
+      cursor: pointer; color: blue; 
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    header, footer {
+      text-align: center;
+    }
+  </style>
+  <style id="pocketgrid-stylesheet">
+    /*! PocketGrid 1.1.0
+    * Copyright 2013 Arnaud Leray
+    * MIT License
+    */
+    /* Border-box-sizing */
+    .block-group, .block, .block-group:after, .block:after, .block-group:before, .block:before {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+    /* Clearfix */
+    .block-group {
+      *zoom: 1;
+    }
+    .block-group:before, .block-group:after {
+      display: table;
+      content: "";
+      line-height: 0;
+    }
+    .block-group:after {
+      clear: both;
+    }
+
+    .block-group {
+      /* ul/li compatibility */
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    /* Nested grid */
+    .block-group > .block-group {
+      clear: none;
+      float: left;
+      margin: 0 !important;
+    }
+
+    /* Default block */
+    .block {
+      float: left;
+      width: 100%;
+    }
+  </style>
+  <style id="atto-stylesheet">
+    #md_source, #js_source, #css_source {
+      resize: none;
+      width: 100%;
+      height: 25vh;
+      border: 1px solid;
+    }
+    .half {
+      width: 100%;
+    }
+    @media (min-width: 768px) {
+      .half {
+        width: 50%;
+      }
+    }
+  </style>
+  <script type="text/javascript" id="blob-source">
+    //Blob.js
+    !function(a){"use strict";if(a.URL=a.URL||a.webkitURL,a.Blob&&a.URL)try{return void new Blob}catch(b){}var c=a.BlobBuilder||a.WebKitBlobBuilder||a.MozBlobBuilder||function(a){var b=function(a){return Object.prototype.toString.call(a).match(/^\[object\s(.*)\]$/)[1]},c=function(){this.data=[]},d=function(a,b,c){this.data=a,this.size=a.length,this.type=b,this.encoding=c},e=c.prototype,f=d.prototype,g=a.FileReaderSync,h=function(a){this.code=this[this.name=a]},i="NOT_FOUND_ERR SECURITY_ERR ABORT_ERR NOT_READABLE_ERR ENCODING_ERR NO_MODIFICATION_ALLOWED_ERR INVALID_STATE_ERR SYNTAX_ERR".split(" "),j=i.length,k=a.URL||a.webkitURL||a,l=k.createObjectURL,m=k.revokeObjectURL,n=k,o=a.btoa,p=a.atob,q=a.ArrayBuffer,r=a.Uint8Array,s=/^[\w-]+:\/*\[?[\w\.:-]+\]?(?::[0-9]+)?/;for(d.fake=f.fake=!0;j--;)h.prototype[i[j]]=j+1;return k.createObjectURL||(n=a.URL=function(a){var c,b=document.createElementNS("http://www.w3.org/1999/xhtml","a");return b.href=a,"origin"in b||("data:"===b.protocol.toLowerCase()?b.origin=null:(c=a.match(s),b.origin=c&&c[1])),b}),n.createObjectURL=function(a){var c,b=a.type;return null===b&&(b="application/octet-stream"),a instanceof d?(c="data:"+b,"base64"===a.encoding?c+";base64,"+a.data:"URI"===a.encoding?c+","+decodeURIComponent(a.data):o?c+";base64,"+o(a.data):c+","+encodeURIComponent(a.data)):l?l.call(k,a):void 0},n.revokeObjectURL=function(a){"data:"!==a.substring(0,5)&&m&&m.call(k,a)},e.append=function(a){var c=this.data;if(r&&(a instanceof q||a instanceof r)){for(var e="",f=new r(a),i=0,j=f.length;j>i;i++)e+=String.fromCharCode(f[i]);c.push(e)}else if("Blob"===b(a)||"File"===b(a)){if(!g)throw new h("NOT_READABLE_ERR");var k=new g;c.push(k.readAsBinaryString(a))}else a instanceof d?"base64"===a.encoding&&p?c.push(p(a.data)):"URI"===a.encoding?c.push(decodeURIComponent(a.data)):"raw"===a.encoding&&c.push(a.data):("string"!=typeof a&&(a+=""),c.push(unescape(encodeURIComponent(a))))},e.getBlob=function(a){return arguments.length||(a=null),new d(this.data.join(""),a,"raw")},e.toString=function(){return"[object BlobBuilder]"},f.slice=function(a,b,c){var e=arguments.length;return 3>e&&(c=null),new d(this.data.slice(a,e>1?b:this.data.length),c,this.encoding)},f.toString=function(){return"[object Blob]"},f.close=function(){this.size=0,delete this.data},c}(a);a.Blob=function(a,b){var d=b?b.type||"":"",e=new c;if(a)for(var f=0,g=a.length;g>f;f++)Uint8Array&&a[f]instanceof Uint8Array?e.append(a[f].buffer):e.append(a[f]);var h=e.getBlob(d);return!h.slice&&h.webkitSlice&&(h.slice=h.webkitSlice),h};var d=Object.getPrototypeOf||function(a){return a.__proto__};a.Blob.prototype=d(new a.Blob)}("undefined"!=typeof self&&self||"undefined"!=typeof window&&window||this.content||this);
+  </script>
+  <script type="text/javascript" id="filesaver-source">
+    /*! @source http://purl.eligrey.com/github/FileSaver.js/blob/master/FileSaver.js */
+    var saveAs=saveAs||function(e){"use strict";if(typeof e==="undefined"||typeof navigator!=="undefined"&&/MSIE [1-9]\./.test(navigator.userAgent)){return}var t=e.document,n=function(){return e.URL||e.webkitURL||e},r=t.createElementNS("http://www.w3.org/1999/xhtml","a"),o="download"in r,i=function(e){var t=new MouseEvent("click");e.dispatchEvent(t)},a=/constructor/i.test(e.HTMLElement),f=/CriOS\/[\d]+/.test(navigator.userAgent),u=function(t){(e.setImmediate||e.setTimeout)(function(){throw t},0)},d="application/octet-stream",s=1e3*40,c=function(e){var t=function(){if(typeof e==="string"){n().revokeObjectURL(e)}else{e.remove()}};setTimeout(t,s)},l=function(e,t,n){t=[].concat(t);var r=t.length;while(r--){var o=e["on"+t[r]];if(typeof o==="function"){try{o.call(e,n||e)}catch(i){u(i)}}}},p=function(e){if(/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(e.type)){return new Blob([String.fromCharCode(65279),e],{type:e.type})}return e},v=function(t,u,s){if(!s){t=p(t)}var v=this,w=t.type,m=w===d,y,h=function(){l(v,"writestart progress write writeend".split(" "))},S=function(){if((f||m&&a)&&e.FileReader){var r=new FileReader;r.onloadend=function(){var t=f?r.result:r.result.replace(/^data:[^;]*;/,"data:attachment/file;");var n=e.open(t,"_blank");if(!n)e.location.href=t;t=undefined;v.readyState=v.DONE;h()};r.readAsDataURL(t);v.readyState=v.INIT;return}if(!y){y=n().createObjectURL(t)}if(m){e.location.href=y}else{var o=e.open(y,"_blank");if(!o){e.location.href=y}}v.readyState=v.DONE;h();c(y)};v.readyState=v.INIT;if(o){y=n().createObjectURL(t);setTimeout(function(){r.href=y;r.download=u;i(r);h();c(y);v.readyState=v.DONE});return}S()},w=v.prototype,m=function(e,t,n){return new v(e,t||e.name||"download",n)};if(typeof navigator!=="undefined"&&navigator.msSaveOrOpenBlob){return function(e,t,n){t=t||e.name||"download";if(!n){e=p(e)}return navigator.msSaveOrOpenBlob(e,t)}}w.abort=function(){};w.readyState=w.INIT=0;w.WRITING=1;w.DONE=2;w.error=w.onwritestart=w.onprogress=w.onwrite=w.onabort=w.onerror=w.onwriteend=null;return m}(typeof self!=="undefined"&&self||typeof window!=="undefined"&&window||this.content);if(typeof module!=="undefined"&&module.exports){module.exports.saveAs=saveAs}else if(typeof define!=="undefined"&&define!==null&&define.amd!==null){define([],function(){return saveAs})}
+  </script>
+  <script type="text/javascript" id="mold-source">
+    (function(mod) {
+      if (typeof exports == "object" && typeof module == "object") // CommonJS
+        module.exports = mod();
+      else if (typeof define == "function" && define.amd) // AMD
+        return define([], mod);
+      else // Plain browser env
+        (this || window).Mold = mod();
+    })(function() {
+    "use strict";
+
+    function Mold(env) {
+      this.env = env || {}
+      this.defs = Object.create(null)
+    }
+
+    Mold.prototype.bake = function(name, string) {
+      if (string == null) { string = name; name = null }
+      var template = new Template(string, name)
+      var result = evaluate(compile(template), this)
+      if (name) this.defs[name] = result
+      return result
+    }
+
+    var HTMLspecial = {"<": "&lt;", "&": "&amp;", "\"": "&quot;"}
+    Mold.prototype.escapeHTML = function(text) {
+      return String(text).replace(/[<&\"]/g, function(ch) {return HTMLspecial[ch]})
+    }
+
+    var hop = Object.prototype.hasOwnProperty
+    Mold.prototype.forEachIn = function(obj, f) {
+      var i = 0
+      for (var n in obj) if (hop.call(obj, n)) f(n, obj[n], i++)
+    }
+
+    Mold.prototype.dispatch = function(name, arg) {
+      if (!(name in this.defs))
+        throw new Error("Unrecognised template command: '" + name + "'.")
+      return this.defs[name](arg)
+    }
+
+
+
+    function Template(string, name) {
+      this.string = string
+      this.name = name
+    }
+
+    Template.prototype.error = function(message, pos) {
+      var line = 1
+      for (var at = 0;;) {
+        var nl = this.string.indexOf("\n", at)
+        if (nl == -1 || nl > pos) break
+        line++
+        at = nl + 1
+      }
+      throw new SyntaxError(message + (this.name ? " at " + this.name + ":" + line : " at line " + line))
+    }
+
+    function tokenize(template) {
+      var string = template.string, parts = [], pos = 0
+
+      function addString(string) {
+        var before = /^\n\s*/.exec(string)
+        if (before) string = string.slice(before[0].length)
+        var after = /\n\s*$/.exec(string)
+        if (after) string = string.slice(0, after.index)
+        if (string.length) parts.push(string)
+      }
+
+      for (;;) {
+        var open = string.indexOf("<<", pos)
+        if (open == -1) {
+          addString(string.slice(pos))
+          return parts
+        } else {
+          addString(string.slice(pos, open))
+          var close = string.indexOf(">>", open + 2)
+          if (close == -1) template.error("Unclosed template tag", open)
+          var tag = /^([\w\/]+)(?:\s+((?:\r|\n|.)+))?$/.exec(string.slice(open + 2, close))
+          if (!tag) template.error("Invalid template tag", open + 2)
+          parts.push({command: tag[1], args: tag[2], pos: open + 2})
+          pos = close + 2
+        }
+      }
+    }
+
+    function compile(template) {
+      var tokens = tokenize(template)
+      //console.log(tokens)
+      var code = "function($in) {\nvar __O = ''\n"
+      var stack = [{type: "top", pos: 0}], match
+
+      for (var i = 0; i < tokens.length; i++) {
+        var tok = tokens[i]
+        if (typeof tok == "string") {
+          code += "__O += " + JSON.stringify(tok) + "\n"
+          continue
+        }
+
+        switch (tok.command) {
+        case "in":
+          var parsed = parseInput(tok.args, "$in")
+          if (parsed == null) template.error("Invalid input pattern", tok.pos)
+          code += parsed
+          break
+
+        case "text": case "t":
+          code += "__O += __M.escapeHTML(" + tok.args + ")\n"
+          break
+
+        case "html": case "h":
+          code += "__O += (" + tok.args + ")\n"
+          break
+
+        case "do": case "d":
+          code += tok.args + ";\n"
+          break
+
+        case "if":
+          stack.push({type: "if", pos: tok.pos})
+          code += "if (" + tok.args + ") {\n"
+          break
+
+        case "elif":
+          if (stack[stack.length - 1].type != "if") template.error("'elif' without matching 'if'", tok.pos)
+          code += "} else if (" + tok.args + ") {\n"
+          break
+
+        case "else":
+          if (stack[stack.length - 1].type != "if") template.error("'else' without matching 'if'", tok.pos)
+          code += "} else {\n"
+          break
+
+        case "/if":
+          if (stack.pop().type != "if") template.error("'/if' without matching 'if'", tok.pos)
+          code += "}\n"
+          break
+
+        case "for":
+          stack.push({type: "for", pos: tok.pos})
+          if (match = tok.args.match(/^([\w\$_]+)(?:,\s*([\w\$_]+))?\s+in\s+((?:\r|\n|.)+)$/)) {
+            code += "__M.forEachIn(" + match[3] + ", function(" + match[1] + ", " +
+              (match[2] || "$dummy") + ", $i) {\n"
+          } else if (match = tok.args.match(/^([\w\$_]+)\s+((?:\r|\n|.)+)$/)) {
+            code += ";(" + match[2] + ").forEach(function(" + match[1] + ", $i) {\n"
+          } else {
+            template.error("Malformed arguments to 'for' form -- expected variable name followed by expression", tok.pos)
+          }
+          break
+
+        case "/for":
+          if (stack.pop().type != "for") template.error("'/for' without matching 'for'", tok.pos)
+          code += "})\n"
+          break
+
+        default:
+          code += "__O += __M.dispatch(" + JSON.stringify(tok.command) + ", " + (/^\s*$/.test(tok.args) ? "null" : tok.args) + ")\n"
+        }
+      }
+
+      if (stack.length > 1) {
+        var bad = stack.pop()
+        template.error("Unclosed " + bad.type + " block in template", bad.pos)
+      }
+
+      code += "return __O\n}"
+      return code
+    }
+
+    function parseInput(pattern, input) {
+      var obj = /^\s*\{\s*([\w$]+(?:\s*,\s*[\w$]+)*)\s*\}\s*$/.exec(pattern)
+      if (obj) {
+        var vars = obj[1].split(/\s*,\s*/), out = "var "
+        for (var i = 0; i < vars.length; i++)
+          out += (i ? ", " : "") + vars[i] + " = " + input + "." + vars[i]
+        return out + "\n"
+      } else {
+        return "var " + pattern + " = " + input + "\n"
+      }
+    }
+
+    function evaluate(code, mold) {
+      var ctx = {__mold: mold}
+      var prelude = "var __M = __CTX.__mold;\n"
+      for (var prop in mold.env) if (mold.env.hasOwnProperty(prop)) {
+        prelude += "var " + prop + " = __CTX." + prop + "\n"
+        ctx[prop] = mold.env[prop]
+      }
+      return new Function("__CTX", prelude + "return " + code)(ctx)
+    }
+
+    return Mold
+    })
+  </script>
+  <script type="text/javascript" id="marked-source">
+    /*Marked*/
+    (function(){var block={newline:/^\n+/,code:/^( {4}[^\n]+\n*)+/,fences:noop,hr:/^( *[-*_]){3,} *(?:\n+|$)/,heading:/^ *(#{1,6}) *([^\n]+?) *#* *(?:\n+|$)/,nptable:noop,lheading:/^([^\n]+)\n *(=|-){2,} *(?:\n+|$)/,blockquote:/^( *>[^\n]+(\n(?!def)[^\n]+)*\n*)+/,list:/^( *)(bull) [\s\S]+?(?:hr|def|\n{2,}(?! )(?!\1bull )\n*|\s*$)/,html:/^ *(?:comment *(?:\n|\s*$)|closed *(?:\n{2,}|\s*$)|closing *(?:\n{2,}|\s*$))/,def:/^ *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?:\n+|$)/,table:noop,paragraph:/^((?:[^\n]+\n?(?!hr|heading|lheading|blockquote|tag|def))+)\n*/,text:/^[^\n]+/};block.bullet=/(?:[*+-]|\d+\.)/;block.item=/^( *)(bull) [^\n]*(?:\n(?!\1bull )[^\n]*)*/;block.item=replace(block.item,"gm")(/bull/g,block.bullet)();block.list=replace(block.list)(/bull/g,block.bullet)("hr","\\n+(?=\\1?(?:[-*_] *){3,}(?:\\n+|$))")("def","\\n+(?="+block.def.source+")")();block.blockquote=replace(block.blockquote)("def",block.def)();block._tag="(?!(?:"+"a|em|strong|small|s|cite|q|dfn|abbr|data|time|code"+"|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo"+"|span|br|wbr|ins|del|img)\\b)\\w+(?!:/|[^\\w\\s@]*@)\\b";block.html=replace(block.html)("comment",/<!--[\s\S]*?-->/)("closed",/<(tag)[\s\S]+?<\/\1>/)("closing",/<tag(?:"[^"]*"|'[^']*'|[^'">])*?>/)(/tag/g,block._tag)();block.paragraph=replace(block.paragraph)("hr",block.hr)("heading",block.heading)("lheading",block.lheading)("blockquote",block.blockquote)("tag","<"+block._tag)("def",block.def)();block.normal=merge({},block);block.gfm=merge({},block.normal,{fences:/^ *(`{3,}|~{3,})[ \.]*(\S+)? *\n([\s\S]*?)\s*\1 *(?:\n+|$)/,paragraph:/^/,heading:/^ *(#{1,6}) +([^\n]+?) *#* *(?:\n+|$)/});block.gfm.paragraph=replace(block.paragraph)("(?!","(?!"+block.gfm.fences.source.replace("\\1","\\2")+"|"+block.list.source.replace("\\1","\\3")+"|")();block.tables=merge({},block.gfm,{nptable:/^ *(\S.*\|.*)\n *([-:]+ *\|[-| :]*)\n((?:.*\|.*(?:\n|$))*)\n*/,table:/^ *\|(.+)\n *\|( *[-:]+[-| :]*)\n((?: *\|.*(?:\n|$))*)\n*/});function Lexer(options){this.tokens=[];this.tokens.links={};this.options=options||marked.defaults;this.rules=block.normal;if(this.options.gfm){if(this.options.tables){this.rules=block.tables}else{this.rules=block.gfm}}}Lexer.rules=block;Lexer.lex=function(src,options){var lexer=new Lexer(options);return lexer.lex(src)};Lexer.prototype.lex=function(src){src=src.replace(/\r\n|\r/g,"\n").replace(/\t/g,"    ").replace(/\u00a0/g," ").replace(/\u2424/g,"\n");return this.token(src,true)};Lexer.prototype.token=function(src,top,bq){var src=src.replace(/^ +$/gm,""),next,loose,cap,bull,b,item,space,i,l;while(src){if(cap=this.rules.newline.exec(src)){src=src.substring(cap[0].length);if(cap[0].length>1){this.tokens.push({type:"space"})}}if(cap=this.rules.code.exec(src)){src=src.substring(cap[0].length);cap=cap[0].replace(/^ {4}/gm,"");this.tokens.push({type:"code",text:!this.options.pedantic?cap.replace(/\n+$/,""):cap});continue}if(cap=this.rules.fences.exec(src)){src=src.substring(cap[0].length);this.tokens.push({type:"code",lang:cap[2],text:cap[3]||""});continue}if(cap=this.rules.heading.exec(src)){src=src.substring(cap[0].length);this.tokens.push({type:"heading",depth:cap[1].length,text:cap[2]});continue}if(top&&(cap=this.rules.nptable.exec(src))){src=src.substring(cap[0].length);item={type:"table",header:cap[1].replace(/^ *| *\| *$/g,"").split(/ *\| */),align:cap[2].replace(/^ *|\| *$/g,"").split(/ *\| */),cells:cap[3].replace(/\n$/,"").split("\n")};for(i=0;i<item.align.length;i++){if(/^ *-+: *$/.test(item.align[i])){item.align[i]="right"}else if(/^ *:-+: *$/.test(item.align[i])){item.align[i]="center"}else if(/^ *:-+ *$/.test(item.align[i])){item.align[i]="left"}else{item.align[i]=null}}for(i=0;i<item.cells.length;i++){item.cells[i]=item.cells[i].split(/ *\| */)}this.tokens.push(item);continue}if(cap=this.rules.lheading.exec(src)){src=src.substring(cap[0].length);this.tokens.push({type:"heading",depth:cap[2]==="="?1:2,text:cap[1]});continue}if(cap=this.rules.hr.exec(src)){src=src.substring(cap[0].length);this.tokens.push({type:"hr"});continue}if(cap=this.rules.blockquote.exec(src)){src=src.substring(cap[0].length);this.tokens.push({type:"blockquote_start"});cap=cap[0].replace(/^ *> ?/gm,"");this.token(cap,top,true);this.tokens.push({type:"blockquote_end"});continue}if(cap=this.rules.list.exec(src)){src=src.substring(cap[0].length);bull=cap[2];this.tokens.push({type:"list_start",ordered:bull.length>1});cap=cap[0].match(this.rules.item);next=false;l=cap.length;i=0;for(;i<l;i++){item=cap[i];space=item.length;item=item.replace(/^ *([*+-]|\d+\.) +/,"");if(~item.indexOf("\n ")){space-=item.length;item=!this.options.pedantic?item.replace(new RegExp("^ {1,"+space+"}","gm"),""):item.replace(/^ {1,4}/gm,"")}if(this.options.smartLists&&i!==l-1){b=block.bullet.exec(cap[i+1])[0];if(bull!==b&&!(bull.length>1&&b.length>1)){src=cap.slice(i+1).join("\n")+src;i=l-1}}loose=next||/\n\n(?!\s*$)/.test(item);if(i!==l-1){next=item.charAt(item.length-1)==="\n";if(!loose)loose=next}this.tokens.push({type:loose?"loose_item_start":"list_item_start"});this.token(item,false,bq);this.tokens.push({type:"list_item_end"})}this.tokens.push({type:"list_end"});continue}if(cap=this.rules.html.exec(src)){src=src.substring(cap[0].length);this.tokens.push({type:this.options.sanitize?"paragraph":"html",pre:!this.options.sanitizer&&(cap[1]==="pre"||cap[1]==="script"||cap[1]==="style"),text:cap[0]});continue}if(!bq&&top&&(cap=this.rules.def.exec(src))){src=src.substring(cap[0].length);this.tokens.links[cap[1].toLowerCase()]={href:cap[2],title:cap[3]};continue}if(top&&(cap=this.rules.table.exec(src))){src=src.substring(cap[0].length);item={type:"table",header:cap[1].replace(/^ *| *\| *$/g,"").split(/ *\| */),align:cap[2].replace(/^ *|\| *$/g,"").split(/ *\| */),cells:cap[3].replace(/(?: *\| *)?\n$/,"").split("\n")};for(i=0;i<item.align.length;i++){if(/^ *-+: *$/.test(item.align[i])){item.align[i]="right"}else if(/^ *:-+: *$/.test(item.align[i])){item.align[i]="center"}else if(/^ *:-+ *$/.test(item.align[i])){item.align[i]="left"}else{item.align[i]=null}}for(i=0;i<item.cells.length;i++){item.cells[i]=item.cells[i].replace(/^ *\| *| *\| *$/g,"").split(/ *\| */)}this.tokens.push(item);continue}if(top&&(cap=this.rules.paragraph.exec(src))){src=src.substring(cap[0].length);this.tokens.push({type:"paragraph",text:cap[1].charAt(cap[1].length-1)==="\n"?cap[1].slice(0,-1):cap[1]});continue}if(cap=this.rules.text.exec(src)){src=src.substring(cap[0].length);this.tokens.push({type:"text",text:cap[0]});continue}if(src){throw new Error("Infinite loop on byte: "+src.charCodeAt(0))}}return this.tokens};var inline={escape:/^\\([\\`*{}\[\]()#+\-.!_>])/,autolink:/^<([^ >]+(@|:\/)[^ >]+)>/,url:noop,tag:/^<!--[\s\S]*?-->|^<\/?\w+(?:"[^"]*"|'[^']*'|[^'">])*?>/,link:/^!?\[(inside)\]\(href\)/,reflink:/^!?\[(inside)\]\s*\[([^\]]*)\]/,nolink:/^!?\[((?:\[[^\]]*\]|[^\[\]])*)\]/,strong:/^__([\s\S]+?)__(?!_)|^\*\*([\s\S]+?)\*\*(?!\*)/,em:/^\b_((?:[^_]|__)+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,code:/^(`+)\s*([\s\S]*?[^`])\s*\1(?!`)/,br:/^ {2,}\n(?!\s*$)/,del:noop,text:/^[\s\S]+?(?=[\\<!\[_*`]| {2,}\n|$)/};inline._inside=/(?:\[[^\]]*\]|[^\[\]]|\](?=[^\[]*\]))*/;inline._href=/\s*<?([\s\S]*?)>?(?:\s+['"]([\s\S]*?)['"])?\s*/;inline.link=replace(inline.link)("inside",inline._inside)("href",inline._href)();inline.reflink=replace(inline.reflink)("inside",inline._inside)();inline.normal=merge({},inline);inline.pedantic=merge({},inline.normal,{strong:/^__(?=\S)([\s\S]*?\S)__(?!_)|^\*\*(?=\S)([\s\S]*?\S)\*\*(?!\*)/,em:/^_(?=\S)([\s\S]*?\S)_(?!_)|^\*(?=\S)([\s\S]*?\S)\*(?!\*)/});inline.gfm=merge({},inline.normal,{escape:replace(inline.escape)("])","~|])")(),url:/^(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/,del:/^~~(?=\S)([\s\S]*?\S)~~/,text:replace(inline.text)("]|","~]|")("|","|https?://|")()});inline.breaks=merge({},inline.gfm,{br:replace(inline.br)("{2,}","*")(),text:replace(inline.gfm.text)("{2,}","*")()});function InlineLexer(links,options){this.options=options||marked.defaults;this.links=links;this.rules=inline.normal;this.renderer=this.options.renderer||new Renderer;this.renderer.options=this.options;if(!this.links){throw new Error("Tokens array requires a `links` property.")}if(this.options.gfm){if(this.options.breaks){this.rules=inline.breaks}else{this.rules=inline.gfm}}else if(this.options.pedantic){this.rules=inline.pedantic}}InlineLexer.rules=inline;InlineLexer.output=function(src,links,options){var inline=new InlineLexer(links,options);return inline.output(src)};InlineLexer.prototype.output=function(src){var out="",link,text,href,cap;while(src){if(cap=this.rules.escape.exec(src)){src=src.substring(cap[0].length);out+=cap[1];continue}if(cap=this.rules.autolink.exec(src)){src=src.substring(cap[0].length);if(cap[2]==="@"){text=cap[1].charAt(6)===":"?this.mangle(cap[1].substring(7)):this.mangle(cap[1]);href=this.mangle("mailto:")+text}else{text=escape(cap[1]);href=text}out+=this.renderer.link(href,null,text);continue}if(!this.inLink&&(cap=this.rules.url.exec(src))){src=src.substring(cap[0].length);text=escape(cap[1]);href=text;out+=this.renderer.link(href,null,text);continue}if(cap=this.rules.tag.exec(src)){if(!this.inLink&&/^<a /i.test(cap[0])){this.inLink=true}else if(this.inLink&&/^<\/a>/i.test(cap[0])){this.inLink=false}src=src.substring(cap[0].length);out+=this.options.sanitize?this.options.sanitizer?this.options.sanitizer(cap[0]):escape(cap[0]):cap[0];continue}if(cap=this.rules.link.exec(src)){src=src.substring(cap[0].length);this.inLink=true;out+=this.outputLink(cap,{href:cap[2],title:cap[3]});this.inLink=false;continue}if((cap=this.rules.reflink.exec(src))||(cap=this.rules.nolink.exec(src))){src=src.substring(cap[0].length);link=(cap[2]||cap[1]).replace(/\s+/g," ");link=this.links[link.toLowerCase()];if(!link||!link.href){out+=cap[0].charAt(0);src=cap[0].substring(1)+src;continue}this.inLink=true;out+=this.outputLink(cap,link);this.inLink=false;continue}if(cap=this.rules.strong.exec(src)){src=src.substring(cap[0].length);out+=this.renderer.strong(this.output(cap[2]||cap[1]));continue}if(cap=this.rules.em.exec(src)){src=src.substring(cap[0].length);out+=this.renderer.em(this.output(cap[2]||cap[1]));continue}if(cap=this.rules.code.exec(src)){src=src.substring(cap[0].length);out+=this.renderer.codespan(escape(cap[2],true));continue}if(cap=this.rules.br.exec(src)){src=src.substring(cap[0].length);out+=this.renderer.br();continue}if(cap=this.rules.del.exec(src)){src=src.substring(cap[0].length);out+=this.renderer.del(this.output(cap[1]));continue}if(cap=this.rules.text.exec(src)){src=src.substring(cap[0].length);out+=this.renderer.text(escape(this.smartypants(cap[0])));continue}if(src){throw new Error("Infinite loop on byte: "+src.charCodeAt(0))}}return out};InlineLexer.prototype.outputLink=function(cap,link){var href=escape(link.href),title=link.title?escape(link.title):null;return cap[0].charAt(0)!=="!"?this.renderer.link(href,title,this.output(cap[1])):this.renderer.image(href,title,escape(cap[1]))};InlineLexer.prototype.smartypants=function(text){if(!this.options.smartypants)return text;return text.replace(/---/g,"—").replace(/--/g,"–").replace(/(^|[-\u2014/(\[{"\s])'/g,"$1‘").replace(/'/g,"’").replace(/(^|[-\u2014/(\[{\u2018\s])"/g,"$1“").replace(/"/g,"”").replace(/\.{3}/g,"…")};InlineLexer.prototype.mangle=function(text){if(!this.options.mangle)return text;var out="",l=text.length,i=0,ch;for(;i<l;i++){ch=text.charCodeAt(i);if(Math.random()>.5){ch="x"+ch.toString(16)}out+="&#"+ch+";"}return out};function Renderer(options){this.options=options||{}}Renderer.prototype.code=function(code,lang,escaped){if(this.options.highlight){var out=this.options.highlight(code,lang);if(out!=null&&out!==code){escaped=true;code=out}}if(!lang){return"<pre><code>"+(escaped?code:escape(code,true))+"\n</code></pre>"}return'<pre><code class="'+this.options.langPrefix+escape(lang,true)+'">'+(escaped?code:escape(code,true))+"\n</code></pre>\n"};Renderer.prototype.blockquote=function(quote){return"<blockquote>\n"+quote+"</blockquote>\n"};Renderer.prototype.html=function(html){return html};Renderer.prototype.heading=function(text,level,raw){return"<h"+level+' id="'+this.options.headerPrefix+raw.toLowerCase().replace(/[^\w]+/g,"-")+'">'+text+"</h"+level+">\n"};Renderer.prototype.hr=function(){return this.options.xhtml?"<hr/>\n":"<hr>\n"};Renderer.prototype.list=function(body,ordered){var type=ordered?"ol":"ul";return"<"+type+">\n"+body+"</"+type+">\n"};Renderer.prototype.listitem=function(text){return"<li>"+text+"</li>\n"};Renderer.prototype.paragraph=function(text){return"<p>"+text+"</p>\n"};Renderer.prototype.table=function(header,body){return"<table>\n"+"<thead>\n"+header+"</thead>\n"+"<tbody>\n"+body+"</tbody>\n"+"</table>\n"};Renderer.prototype.tablerow=function(content){return"<tr>\n"+content+"</tr>\n"};Renderer.prototype.tablecell=function(content,flags){var type=flags.header?"th":"td";var tag=flags.align?"<"+type+' style="text-align:'+flags.align+'">':"<"+type+">";return tag+content+"</"+type+">\n"};Renderer.prototype.strong=function(text){return"<strong>"+text+"</strong>"};Renderer.prototype.em=function(text){return"<em>"+text+"</em>"};Renderer.prototype.codespan=function(text){return"<code>"+text+"</code>"};Renderer.prototype.br=function(){return this.options.xhtml?"<br/>":"<br>"};Renderer.prototype.del=function(text){return"<del>"+text+"</del>"};Renderer.prototype.link=function(href,title,text){if(this.options.sanitize){try{var prot=decodeURIComponent(unescape(href)).replace(/[^\w:]/g,"").toLowerCase()}catch(e){return""}if(prot.indexOf("javascript:")===0||prot.indexOf("vbscript:")===0){return""}}var out='<a href="'+href+'"';if(title){out+=' title="'+title+'"'}out+=">"+text+"</a>";return out};Renderer.prototype.image=function(href,title,text){var out='<img src="'+href+'" alt="'+text+'"';if(title){out+=' title="'+title+'"'}out+=this.options.xhtml?"/>":">";return out};Renderer.prototype.text=function(text){return text};function Parser(options){this.tokens=[];this.token=null;this.options=options||marked.defaults;this.options.renderer=this.options.renderer||new Renderer;this.renderer=this.options.renderer;this.renderer.options=this.options}Parser.parse=function(src,options,renderer){var parser=new Parser(options,renderer);return parser.parse(src)};Parser.prototype.parse=function(src){this.inline=new InlineLexer(src.links,this.options,this.renderer);this.tokens=src.reverse();var out="";while(this.next()){out+=this.tok()}return out};Parser.prototype.next=function(){return this.token=this.tokens.pop()};Parser.prototype.peek=function(){return this.tokens[this.tokens.length-1]||0};Parser.prototype.parseText=function(){var body=this.token.text;while(this.peek().type==="text"){body+="\n"+this.next().text}return this.inline.output(body)};Parser.prototype.tok=function(){switch(this.token.type){case"space":{return""}case"hr":{return this.renderer.hr()}case"heading":{return this.renderer.heading(this.inline.output(this.token.text),this.token.depth,this.token.text)}case"code":{return this.renderer.code(this.token.text,this.token.lang,this.token.escaped)}case"table":{var header="",body="",i,row,cell,flags,j;cell="";for(i=0;i<this.token.header.length;i++){flags={header:true,align:this.token.align[i]};cell+=this.renderer.tablecell(this.inline.output(this.token.header[i]),{header:true,align:this.token.align[i]})}header+=this.renderer.tablerow(cell);for(i=0;i<this.token.cells.length;i++){row=this.token.cells[i];cell="";for(j=0;j<row.length;j++){cell+=this.renderer.tablecell(this.inline.output(row[j]),{header:false,align:this.token.align[j]})}body+=this.renderer.tablerow(cell)}return this.renderer.table(header,body)}case"blockquote_start":{var body="";while(this.next().type!=="blockquote_end"){body+=this.tok()}return this.renderer.blockquote(body)}case"list_start":{var body="",ordered=this.token.ordered;while(this.next().type!=="list_end"){body+=this.tok()}return this.renderer.list(body,ordered)}case"list_item_start":{var body="";while(this.next().type!=="list_item_end"){body+=this.token.type==="text"?this.parseText():this.tok()}return this.renderer.listitem(body)}case"loose_item_start":{var body="";while(this.next().type!=="list_item_end"){body+=this.tok()}return this.renderer.listitem(body)}case"html":{var html=!this.token.pre&&!this.options.pedantic?this.inline.output(this.token.text):this.token.text;return this.renderer.html(html)}case"paragraph":{return this.renderer.paragraph(this.inline.output(this.token.text))}case"text":{return this.renderer.paragraph(this.parseText())}}};function escape(html,encode){return html.replace(!encode?/&(?!#?\w+;)/g:/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;")}function unescape(html){return html.replace(/&([#\w]+);/g,function(_,n){n=n.toLowerCase();if(n==="colon")return":";if(n.charAt(0)==="#"){return n.charAt(1)==="x"?String.fromCharCode(parseInt(n.substring(2),16)):String.fromCharCode(+n.substring(1))}return""})}function replace(regex,opt){regex=regex.source;opt=opt||"";return function self(name,val){if(!name)return new RegExp(regex,opt);val=val.source||val;val=val.replace(/(^|[^\[])\^/g,"$1");regex=regex.replace(name,val);return self}}function noop(){}noop.exec=noop;function merge(obj){var i=1,target,key;for(;i<arguments.length;i++){target=arguments[i];for(key in target){if(Object.prototype.hasOwnProperty.call(target,key)){obj[key]=target[key]}}}return obj}function marked(src,opt,callback){if(callback||typeof opt==="function"){if(!callback){callback=opt;opt=null}opt=merge({},marked.defaults,opt||{});var highlight=opt.highlight,tokens,pending,i=0;try{tokens=Lexer.lex(src,opt)}catch(e){return callback(e)}pending=tokens.length;var done=function(err){if(err){opt.highlight=highlight;return callback(err)}var out;try{out=Parser.parse(tokens,opt)}catch(e){err=e}opt.highlight=highlight;return err?callback(err):callback(null,out)};if(!highlight||highlight.length<3){return done()}delete opt.highlight;if(!pending)return done();for(;i<tokens.length;i++){(function(token){if(token.type!=="code"){return--pending||done()}return highlight(token.text,token.lang,function(err,code){if(err)return done(err);if(code==null||code===token.text){return--pending||done()}token.text=code;token.escaped=true;--pending||done()})})(tokens[i])}return}try{if(opt)opt=merge({},marked.defaults,opt);return Parser.parse(Lexer.lex(src,opt),opt)}catch(e){e.message+="\nPlease report this to https://github.com/chjj/marked.";if((opt||marked.defaults).silent){return"<p>An error occured:</p><pre>"+escape(e.message+"",true)+"</pre>"}throw e}}marked.options=marked.setOptions=function(opt){merge(marked.defaults,opt);return marked};marked.defaults={gfm:true,tables:true,breaks:false,pedantic:false,sanitize:false,sanitizer:null,mangle:true,smartLists:false,silent:false,highlight:null,langPrefix:"lang-",smartypants:false,headerPrefix:"",renderer:new Renderer,xhtml:false};marked.Parser=Parser;marked.parser=Parser.parse;marked.Renderer=Renderer;marked.Lexer=Lexer;marked.lexer=Lexer.lex;marked.InlineLexer=InlineLexer;marked.inlineLexer=InlineLexer.output;marked.parse=marked;if(typeof module!=="undefined"&&typeof exports==="object"){module.exports=marked}else if(typeof define==="function"&&define.amd){define(function(){return marked})}else{this.marked=marked}}).call(function(){return this||(typeof window!=="undefined"?window:global)}());
+  </script>
+  <script type="text/javascript" id="player-source">
+    var mold = new Mold();
+    mold.defs.br = function () {
+      return "\n\n";
+    }
+
+    var renderer = new marked.Renderer();
+
+    renderer.link = function (href, title, text) {
+      if (href.startsWith("#")) {
+        return "<a rel=\"" + href.substr(1) + "\""+ (title ? "title=\"" + title + "\"" : "") +">" + text + "</a>";
+      } else {
+        return "<a href=\"" + href + "\""+ (title ? "title=\"" + title + "\"": "") +">" + text + "</a>";
+      }
+    }
+
+    function bake (doc, page) {
+      return mold.bake(page, doc.pages[page]);
+    }
+
+    function jump (doc, page) {
+      doc.jumped = true;
+      show_page(doc, page, true);
+    }
+
+    function show_page (doc, page, is_jump) {
+      //Prevent visiting of unexistent pages with an error message on the
+      // console
+      if (!doc.pages[page]) {
+        console.log("Error: no page '" + page + "' in document.");
+        return;
+      }
+      //Modify history and current page to reflect the change/visit
+      doc.page = page;
+      doc.history.push(page);
+      //Re-baking the template to allow things like run-time modifying of
+      // the pages. Pay attention - if an included page is modified at
+      // runtime, it must be re-baked by invoking `$in.bake(page)` or the
+      // change won't take effect until it is visited again.
+      var header = (doc.pages["header"] ? marked(doc.bake("header")(doc), {renderer: renderer}) : "");
+      var content = marked(doc.bake(page)(doc), {renderer: renderer});
+      var footer = (doc.pages["footer"] ? marked(doc.bake("footer")(doc), {renderer: renderer}) : "");
+      //If we jumped we don't want to continue the rendering of the old
+      // page, lest we overwrite the new one. If we are jumping, by any
+      // means overwrite everything.
+      if (!is_jump && doc.jumped) {
+        doc.jumped = false;
+        return;
+      }
+      //Parse the page data with marked and show it to the user, prepending
+      // and appending the header and footer pages to it.
+      document.getElementById("document").innerHTML = header + content + footer;
+      //Handle href-less, rel-having (intra-document) links by ourselves
+      var links = document.getElementById("document").getElementsByTagName("a");
+      for (var i = 0; i < links.length; i++) {
+        var link = links[i];
+        if (link.rel !== ""){
+          link.addEventListener("click", function(event) {
+            show_page(doc, event.target.rel);
+            event.preventDefault();
+          });
+        }
+      }
+    }
+
+    function init_document (doc) {
+      //Register arbitrary functions within doc, to use with <<do $in.fn()>>
+      function register (fn, name) {
+        doc[name || fn.name] = function () {
+          return fn.apply(this, [doc].concat(Array.prototype.slice.call(arguments)));
+        }
+      }
+      //To allow re-baking of pages at runtime (if we modified an included
+      // template, for example) - should be used rarely
+      register(bake);
+      //To allow redirection at runtime without having to click on a link
+      register(jump);
+      //Hook to register other functions - simply drop a function 
+      //    function exports (register) { register(...); }
+      // inside the javascript.
+      if (typeof exports === "function") {
+        exports(register);
+      }
+      //Caching templates in the mold instance to allow things like
+      // including them by name.
+      for (page in doc.pages) {
+        bake(doc, page);
+      }
+      //Add other fields to doc relevant to runtime
+      doc.page = null;
+      doc.history = [];
+      doc.vars = {};
+      doc.jumped = false;
+      //Unless the meta `hide_prelude` is set show the prelude itself:
+      // title, description and (#TODO) other metadata
+      if (!doc.meta.hide_prelude) {
+        document.getElementById("document").innerHTML = marked("# " + (doc.meta.title || "Untitled document") + "\n\n" + (doc.meta.description || "")) + "<div class=\"center\"><a id=\"begin\">Begin</a></div>";
+        document.getElementById("begin").addEventListener("click", function (event) {
+          show_page(doc, doc.meta.first_page);
+        });
+      } else {
+        show_page(doc, doc.meta.first_page);
+      }
+    }
+  </script>
+  <script type="text/plain" id="example_md">title: Sample document
+description: This is a sample document, written to show off some of the features of **Atto Secondo**. Click on **Begin** to start.
+first_page: start
+
+=HEADER=
+
+<<if $in.vars.turns === undefined>>
+  <<do $in.vars.turns = 1; >>
+  <<do $in.vars.inventory = []; >>
+<<else>>
+  <<do $in.inc("turns"); >>
+<</if>>
+
+**Turn:** <<t $in.vars.turns>> - <<inventory $in>> <<br>>
+
+---
+
+=INVENTORY=
+
+You are carrying 
+<<if $in.vars.inventory.length>>
+  <<for item $in.vars.inventory>>
+    <<if $i>>, <</if>><<t item>>
+  <</for>>
+<<else>>
+ nothing.
+<</if>>
+
+=START=
+
+You are no hero - not strong enough to wield a sword, nor smart enough to ponder the unknown, and too squeamish to cosh drunk people in dark alleys.
+
+You are simply a commoner, and you were happy with your lot, until [they](#enemy_introduction) came.
+
+<<if !$in.vars.inventory.includes("a rusty old sword") >>
+  <<do $in.vars.inventory.push("a rusty old sword"); >>
+<</if>>
+
+=ENEMY INTRODUCTION=
+
+They came from the west. Hordes of orcs, like nothing seen before. They destroyed your town without even trying - [your family](#your_family) saved only thanks to your quick thinking, but you now own only the clothes on your back, and an old, rusty sword you stole from one of the orcs.
+
+=YOUR FAMILY=
+
+Your dear old papa died when you were thirteen, stumbling drunk into a ditch and drowning on his own vomit. But your mama is safe, and your little sister too.
+
+[Go back](#enemy_introduction)
+  </script>
+  <script type="text/plain" id="example_js">function exports (register) {
+  register(function (doc, variable) {
+    return doc.vars[variable]++;
+  }, "inc");
+}
+  </script>
+  <script type="text/javascript" id="compiler-source">
+    <!--
+    function slugify (string) {
+      return string.toLowerCase().split(" ").filter(function (i) { return i.length !== 0; }).join("_").replace(/[^\w_]+/g, '');
+    }
+
+    function make_document (doc, js, css) {
+      //Let's Frankenstein this file together.
+      var file = "<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n  <title>" + (doc.meta.title || "Untitled document") + "</title>\n  <style>" + (css || document.getElementById("lightweight-stylesheet").innerHTML) + "</style>\n  <script type=\"text/javascript\">" + js + "</script>";
+      //Adding mold
+      file += "\n  <script type=\"text/javascript\">" + document.getElementById("mold-source").innerHTML + "</script>";
+      //Adding marked
+      file += "\n  <script type=\"text/javascript\">" + document.getElementById("marked-source").innerHTML + "</script>";
+      //Adding the player
+      file += "\n  <script type=\"text/javascript\">" + document.getElementById("player-source").innerHTML + "</script>";
+      //Document data and loader
+      file += "\n  <script type=\"text/javascript\">" + "var doc = " + JSON.stringify(doc) + "; window.onload = function (event) { init_document(doc); } </script>";
+      //Footer and stuff
+      file += "\n</head>\n<body>\n  <main id=\"document\"></main>\n  <footer>Made with Atto Secondo</footer>\n</body></html>";
+      //And here it is! :D
+      return file;
+    }
+
+    function check_document (doc) {
+      var pages = 0;
+      for (page in doc.pages) {
+        pages++;
+      }
+      if (pages > 0) {
+        return true;
+      }
+      console.log("Error: No pages in document.");
+      return false;
+    }
+
+    function compile (source) {
+      var doc = {
+        meta: {},
+        pages: {}
+      }
+      var page = null; //Current page
+      var meta = null; //Current meta
+      var lines = source.split("\n");
+      for (var i = 0; i < lines.length; i++) {
+        var line = lines[i];
+        if (line.startsWith("=") && line.endsWith("=")) {
+          //This is the start of a new section - let's slugify its title
+          // and create its slot in doc.pages
+          page = slugify(line.slice(1, line.length - 1));
+          if (!doc.meta.first_page) {
+            //Unless the first_page meta is set (either by this or by
+            // directly setting it in the intro), we'll consider this as 
+            // the first page.
+            doc.meta.first_page = page;
+          }
+          doc.pages[page] = "";
+        } else {
+          //This is *not* the start of a new section. This line could be:
+          if (page !== null) {
+            // 1. part of the content of the current page;
+            doc.pages[page] += line + "\n";
+          } else if (line.indexOf(":") !== -1) {
+            // 2. a key: value pair in the intro, as no page is currently
+            //    being parsed. We'll do some simple string manipulation
+            //    to extract them, and set the current meta to `key`;
+            meta = line.substr(0, line.indexOf(":")).toLowerCase();
+            var value = line.substr(line.indexOf(":") + 1);
+            doc.meta[meta] = value.trim();
+          } else if (line.trim()) {
+            // 3. the continuation of a key: value pair, as no page is
+            //    currently being parsed *and* we can't find a `:` within
+            //    the line. #TODO: make this better;
+            doc.meta[meta] += "\n" + line.trim();
+          } else {
+            // 4. an empty line in the intro, and we'll ignore it.
+          }
+        }
+      }
+      return doc;
+    }
+
+    window.onload = function (event) {
+      document.getElementById("run").addEventListener("click", function (event) {
+        var doc = compile(document.getElementById("md_source").value);
+        if (check_document(doc)) {
+          //#HACK this could potentially be dangerous, *but* the user is
+          // running this code on their own machine, and I hope to hell
+          // they know what they are doing.
+          //eval.call(window, ...) to execute eval in global scope
+          eval.call(window, document.getElementById("js_source").value);
+          //#TODO I still don't know how to dynamically insert the css,
+          // so the default CSS will have to suffice
+          init_document(doc);
+        }
+      });
+      document.getElementById("create").addEventListener("click", function (event) {
+        var doc = compile(document.getElementById("md_source").value);
+        if (check_document(doc)) {
+          var file = make_document(
+            doc, 
+            document.getElementById("js_source").value,
+            document.getElementById("css_source").value
+          );
+          var blob = new Blob([file], {type: "text/html;charset=utf-8"});
+          saveAs(blob, (doc.meta.title || "Untitled document") + ".html");
+        }
+      });
+      document.getElementById("save").addEventListener("click", function (event) {
+        localStorage["atto_secondo"] = JSON.stringify({
+          md_source: document.getElementById("md_source").value,
+          js_source: document.getElementById("js_source").value,
+          css_source: document.getElementById("css_source").value
+        });
+      });
+      document.getElementById("load").addEventListener("click", function (event) {
+        var temp = JSON.parse(localStorage["atto_secondo"] || "{}");
+        for (id in temp) {
+          document.getElementById(id).value = temp[id];
+        }
+      });
+      document.getElementById("example").addEventListener("click", function (event) {
+        document.getElementById("md_source").value = document.getElementById("example_md").innerHTML;
+        document.getElementById("js_source").value = document.getElementById("example_js").innerHTML;
+      });
+    }
+    -->
+  </script>
+</head>
+<body>
+  <header>
+    <a id="run">Run</a> -
+    <a id="create">Create</a> -
+    <a id="export">[Export]</a> -
+    <a id="import">[Import]</a> -
+    <a id="save">Save</a> -
+    <a id="load">Load</a> - 
+    <a id="example">See example</a>
+  </header>
+  <main>
+    <textarea id="md_source" rows="10"></textarea>
+    <div class="block-group">
+      <div class="block half">
+        <textarea id="js_source"></textarea>
+      </div>
+      <div class="block half">
+        <textarea id="css_source"></textarea>
+      </div>
+    </div>
+    <hr/>
+    <div id="document"></div>
+  </main>
+  <footer>
+    Atto Secondo
+  </footer>
+</body>
+</html>
